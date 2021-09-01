@@ -1,2 +1,5 @@
 
 .vscode/settings.json
+python/fledge/plugins/north/kafka_python/test2.py
+python/fledge/plugins/north/kafka_python/test.py
+python/fledge/plugins/north/kafka_python/kafka_test_producer.py
