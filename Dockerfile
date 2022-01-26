@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 # Set FLEDGE version, distribution, and platform
-ENV FLEDGE_VERSION=1.9.1
+ENV FLEDGE_VERSION=1.9.2
 ENV FLEDGE_DISTRIBUTION=ubuntu2004
 ENV FLEDGE_PLATFORM=x86_64
 
@@ -45,49 +45,81 @@ RUN apt update && apt dist-upgrade -y && apt install --no-install-recommends --y
     /fledge.postinst && \
     # Install our fledge notification services and plugins
     # Comment out any that you do not want
-    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-service-notification-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-asset-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-change-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-delta-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-expression-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-fft-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-flirvalidity-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-log-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-metadata-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-omfhint-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-python27-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-python35-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-rate-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-rename-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-replace-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-rms-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-scale-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-scale-set-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
-    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-threshold-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y  && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-filter-threshold-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-gcp-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-mqtt-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-north-azure-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-north-gcp-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-north-harperdb-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-north-http-north-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-north-httpc-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-north-kafka-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-north-kafka-python-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-north-opcua-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-north-thingspeak-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-service-notification-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-notify-alexa-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-notify-asset-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-notify-blynk-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-notify-email-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-notify-hangouts-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-notify-ifttt-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-notify-mqtt-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-notify-operation-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-notify-python35-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-notify-setpoint-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-notify-slack-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-notify-telegram-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-rule-average-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-rule-outofbound-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-rule-simple-expression-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-b100-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-benchmark-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-cc2650-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-coap-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-csv-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-CSV-Async-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-csvplayback-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-dnp3-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-expression-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-http-south-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    #apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-j1708-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    #apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-lathe-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-modbus-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-modbustcp-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
-    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-http-south-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-flirax8-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-mqtt-readings-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-mqtt-sparkplug-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-opcua-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-openweathermap-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-person-detection-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-playback-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-random-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-randomwalk-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    #apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-roxtec-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-s2opcua-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    #apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-sensorphone-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-sinusoid-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-systeminfo-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    #apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-usb4704-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
+    #apt install /fledge/${FLEDGE_VERSION}/${FLEDGE_DISTRIBUTION}/${FLEDGE_PLATFORM}/fledge-south-wind-turbine-${FLEDGE_VERSION}-${FLEDGE_PLATFORM}.deb -y && \
     # Cleanup fledge installation packages
     rm -f /*.tgz && \ 
     # You may choose to leave the installation packages in the directory in case you need to troubleshoot
