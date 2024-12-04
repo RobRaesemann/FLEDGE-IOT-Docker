@@ -61,7 +61,6 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/
 
 WORKDIR /usr/local/fledge
-COPY ./python /usr/local/fledge/python/
 RUN for f in /usr/local/fledge/python/*.txt ; do pip3 install -r "$f" ; done
 
 ENV FLEDGE_ROOT=/usr/local/fledge

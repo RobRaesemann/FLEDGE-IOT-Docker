@@ -2,9 +2,9 @@
 
 This is the fastest way to get the Fledge IIoT Framework up and running for evaluation.
 
-See the FLEDGE GUI Docker container at:
+See the Fledge and Fledge GUI Docker container at:
+https://hub.docker.com/repository/docker/robraesemann/fledge
 https://hub.docker.com/repository/docker/robraesemann/fledge-gui
-
 
 ## Docker-Compose file makes it easy to test Fledge with the Fledge-GUI
 
