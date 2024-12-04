@@ -48,7 +48,7 @@ This image is also available prebuilt. You can pull it and run it using the foll
 ```
 docker pull robraesemann/fledge
 
-docker run -d --name fledge -p 8081:8081 -p 1995:1995 -p 8080:8080 robraesemann/fledge
+docker run -d --name fledge -p 8081:8081 -p 1995:1995 -p 8080:8080 -p 6683:6683 -p 6684:6684 robraesemann/fledge
 
 docker logs -f fledge 
 ```
